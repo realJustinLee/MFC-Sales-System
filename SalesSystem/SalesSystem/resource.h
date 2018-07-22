@@ -14,6 +14,7 @@
 #define IDD_DIALOG_SELL                 319
 #define IDD_DIALOG_INFO                 321
 #define IDD_DIALOG_ADD                  323
+#define IDD_DIALOG_DEL                  325
 #define IDC_EDIT1                       1000
 #define IDC_EDIT2                       1001
 #define IDC_BUTTON1                     1002
@@ -29,13 +30,26 @@
 #define IDC_BUTTON4                     1009
 #define IDC_BUTTON5                     1010
 #define IDC_BUTTON6                     1011
+#define ID_32771                        32771
+#define ID_EXIT                         32772
+#define ID_32773                        32773
+#define ID_32774                        32774
+#define ID_32775                        32775
+#define ID_32776                        32776
+#define ID_32777                        32777
+#define ID_INFO                         32778
+#define ID_DELL                         32779
+#define ID_SELL                         32780
+#define ID_USER                         32781
+#define ID_ADD                          32782
+#define ID_DEL                          32783
 
 // Next default values for new objects
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
-#define _APS_NEXT_RESOURCE_VALUE        325
-#define _APS_NEXT_COMMAND_VALUE         32771
+#define _APS_NEXT_RESOURCE_VALUE        327
+#define _APS_NEXT_COMMAND_VALUE         32784
 #define _APS_NEXT_CONTROL_VALUE         1012
 #define _APS_NEXT_SYMED_VALUE           314
 #endif

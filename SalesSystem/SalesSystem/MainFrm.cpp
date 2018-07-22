@@ -13,6 +13,8 @@
 #include "SellDlg.h"
 #include "InfoDlg.h"
 #include "AddDlg.h"
+#include "DelDlg.h"
+
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -33,6 +35,12 @@ BEGIN_MESSAGE_MAP(CMainFrame, CFrameWnd)
 	ON_MESSAGE(NM_D, OnMyChange)
 	ON_MESSAGE(NM_E, OnMyChange)
 
+	ON_COMMAND(ID_EXIT, &CMainFrame::OnExit)
+	ON_COMMAND(ID_USER, &CMainFrame::OnUser)
+	ON_COMMAND(ID_SELL, &CMainFrame::OnSell)
+	ON_COMMAND(ID_INFO, &CMainFrame::OnInfo)
+	ON_COMMAND(ID_ADD, &CMainFrame::OnAdd)
+	ON_COMMAND(ID_DEL, &CMainFrame::OnDel)
 END_MESSAGE_MAP()
 
 static UINT indicators[] =
@@ -196,10 +204,55 @@ LRESULT CMainFrame::OnMyChange(WPARAM wParam, LPARAM lParam)
 	case NM_E:
 	{
 		//MessageBox(TEXT("¿â´æÉ¾³ý½çÃæ¹ÒÔØ"));
+		context.m_pNewViewClass = RUNTIME_CLASS(CDelDlg);
+		context.m_pCurrentFrame = this;
+		context.m_pLastView = (CFormView*)m_spliter.GetPane(0, 1);
+		m_spliter.DeleteView(0, 1);
+		m_spliter.CreateView(0, 1, RUNTIME_CLASS(CDelDlg), CSize(600, 500), &context);
+		CDelDlg *pNewView = (CDelDlg *)m_spliter.GetPane(0, 1);
+		m_spliter.RecalcLayout();
+		pNewView->OnInitialUpdate();
+		m_spliter.SetActivePane(0, 1);
 		break;
 	}
 	default:
 		break;
 	}
 	return 0;
+}
+
+
+void CMainFrame::OnExit()
+{
+	exit(0);
+}
+
+
+void CMainFrame::OnUser()
+{
+	::PostMessage(AfxGetMainWnd()->GetSafeHwnd(), NM_A, (WPARAM)NM_A, (LPARAM)0);
+}
+
+
+void CMainFrame::OnSell()
+{
+	::PostMessage(AfxGetMainWnd()->GetSafeHwnd(), NM_B, (WPARAM)NM_B, (LPARAM)0);
+}
+
+
+void CMainFrame::OnInfo()
+{
+	::PostMessage(AfxGetMainWnd()->GetSafeHwnd(), NM_C, (WPARAM)NM_C, (LPARAM)0);
+}
+
+
+void CMainFrame::OnAdd()
+{
+	::PostMessage(AfxGetMainWnd()->GetSafeHwnd(), NM_D, (WPARAM)NM_D, (LPARAM)0);
+}
+
+
+void CMainFrame::OnDel()
+{
+	::PostMessage(AfxGetMainWnd()->GetSafeHwnd(), NM_E, (WPARAM)NM_E, (LPARAM)0);
 }

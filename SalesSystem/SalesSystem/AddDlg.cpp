@@ -41,6 +41,8 @@ BEGIN_MESSAGE_MAP(CAddDlg, CFormView)
 	ON_CBN_SELCHANGE(IDC_COMBO1, &CAddDlg::OnCbnSelchangeCombo1)
 	ON_BN_CLICKED(IDC_BUTTON3, &CAddDlg::OnBnClickedButton3)
 	ON_BN_CLICKED(IDC_BUTTON4, &CAddDlg::OnBnClickedButton4)
+	ON_BN_CLICKED(IDC_BUTTON5, &CAddDlg::OnBnClickedButton5)
+	ON_BN_CLICKED(IDC_BUTTON6, &CAddDlg::OnBnClickedButton6)
 END_MESSAGE_MAP()
 
 
@@ -81,7 +83,7 @@ void CAddDlg::OnInitialUpdate()
 
 	m_combo.SetCurSel(0);
 	// 更新第一个商品里的数据
-	 OnCbnSelchangeCombo1();
+	OnCbnSelchangeCombo1();
 }
 
 
@@ -114,13 +116,12 @@ void CAddDlg::OnCbnSelchangeCombo1()
 void CAddDlg::OnBnClickedButton3()
 {
 	UpdateData(TRUE);
-	// 添加商品的功能实现
+	// 添加商品个数的功能实现
 	if (m_num <= 0) {
 		MessageBox(TEXT("添加数量要大于0"));
 		return;
 	}
 
-	// 购买
 	// 获取具体要添加的商品名称
 	int index = m_combo.GetCurSel();
 
@@ -156,4 +157,46 @@ void CAddDlg::OnBnClickedButton4()
 	m_combo.SetCurSel(0);
 	// 更新第一个商品里的数据
 	OnCbnSelchangeCombo1();
+}
+
+
+void CAddDlg::OnBnClickedButton5()
+{
+	UpdateData(TRUE);
+	// 添加商品个数的功能实现
+	if (m_newName.IsEmpty() || m_newNum <= 0 || m_newPrice <= 0) {
+		MessageBox(TEXT("输入信息有误"));
+		return;
+	}
+
+	// 获取具体要添加的商品名称
+	int index = m_combo.GetCurSel();
+
+	CString name;
+	m_combo.GetLBText(index, name);
+
+	CInfoFile file;
+	file.ReadDocline();
+
+	file.Addline(m_newName, m_newNum, m_newPrice);
+	file.WriteDocline();
+	MessageBox(TEXT("新商品添加成功"));
+
+	m_combo.InsertString(0, m_newName);
+	m_combo.SetCurSel(0);
+	OnCbnSelchangeCombo1();
+	m_newName.Empty();
+	m_newNum = 0;
+	m_newPrice = 0;
+	UpdateData(FALSE);
+}
+
+
+void CAddDlg::OnBnClickedButton6()
+{
+	// 清空数据
+	m_newName.Empty();
+	m_newNum = 0;
+	m_newPrice = 0;
+	UpdateData(FALSE);
 }

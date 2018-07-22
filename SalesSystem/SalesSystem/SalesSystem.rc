@@ -85,32 +85,17 @@ IDI_ICON_WIN            ICON                    "res\\user.ico"
 
 IDR_MAINFRAME MENU
 BEGIN
-    POPUP "文件(&F)"
+    POPUP "开始"
     BEGIN
-        MENUITEM "新建(&N)\tCtrl+N",              ID_FILE_NEW
-        MENUITEM "打开(&O)...\tCtrl+O",           ID_FILE_OPEN
-        MENUITEM "保存(&S)\tCtrl+S",              ID_FILE_SAVE
-        MENUITEM "另存为(&A)...",                  ID_FILE_SAVE_AS
-        MENUITEM SEPARATOR
-        MENUITEM "打印(&P)...\tCtrl+P",           ID_FILE_PRINT
-        MENUITEM "打印预览(&V)",                    ID_FILE_PRINT_PREVIEW
-        MENUITEM "打印设置(&R)...",                 ID_FILE_PRINT_SETUP
-        MENUITEM SEPARATOR
-        MENUITEM "最近的文件",                       ID_FILE_MRU_FILE1, GRAYED
-        MENUITEM SEPARATOR
-        MENUITEM "退出(&X)",                      ID_APP_EXIT
+        MENUITEM "退出",                          ID_EXIT
     END
-    POPUP "编辑(&E)"
+    POPUP "菜单"
     BEGIN
-        MENUITEM "撤消(&U)\tCtrl+Z",              ID_EDIT_UNDO
-        MENUITEM SEPARATOR
-        MENUITEM "剪切(&T)\tCtrl+X",              ID_EDIT_CUT
-        MENUITEM "复制(&C)\tCtrl+C",              ID_EDIT_COPY
-        MENUITEM "粘贴(&P)\tCtrl+V",              ID_EDIT_PASTE
-    END
-    POPUP "视图(&V)"
-    BEGIN
-        MENUITEM "状态栏(&S)",                     ID_VIEW_STATUS_BAR
+        MENUITEM "个人信息",                        ID_USER
+        MENUITEM "销售管理",                        ID_SELL
+        MENUITEM "库存信息",                        ID_INFO
+        MENUITEM "库存添加",                        ID_ADD
+        MENUITEM "库存删除",                        ID_DEL
     END
     POPUP "帮助(&H)"
     BEGIN
@@ -248,6 +233,21 @@ BEGIN
     LTEXT           "个数：",IDC_STATIC,194,127,25,8
 END
 
+IDD_DIALOG_DEL DIALOGEX 0, 0, 335, 237
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_SYSMENU
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    GROUPBOX        "删除商品",IDC_STATIC,74,32,184,164
+    LTEXT           "商品名：",IDC_STATIC,100,65,33,8
+    LTEXT           "单价：",IDC_STATIC,108,97,25,8
+    LTEXT           "个数：",IDC_STATIC,108,132,25,8
+    PUSHBUTTON      "确定",IDC_BUTTON1,104,164,50,14
+    PUSHBUTTON      "取消",IDC_BUTTON2,172,164,50,14
+    EDITTEXT        IDC_EDIT1,147,97,74,14,ES_AUTOHSCROLL | ES_READONLY
+    EDITTEXT        IDC_EDIT2,147,132,74,14,ES_AUTOHSCROLL
+    COMBOBOX        IDC_COMBO1,147,65,74,30,CBS_DROPDOWNLIST | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+END
+
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -351,6 +351,14 @@ BEGIN
         TOPMARGIN, 7
         BOTTOMMARGIN, 219
     END
+
+    IDD_DIALOG_DEL, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 328
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 230
+    END
 END
 #endif    // APSTUDIO_INVOKED
 
@@ -386,6 +394,11 @@ BEGIN
 END
 
 IDD_DIALOG_ADD AFX_DIALOG_LAYOUT
+BEGIN
+    0
+END
+
+IDD_DIALOG_DEL AFX_DIALOG_LAYOUT
 BEGIN
     0
 END

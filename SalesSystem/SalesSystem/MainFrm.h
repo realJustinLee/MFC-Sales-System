@@ -47,6 +47,13 @@ private:
 	CSplitterWnd m_spliter;
 	virtual BOOL OnCreateClient(LPCREATESTRUCT lpcs, CCreateContext* pContext);
 	afx_msg LRESULT OnMyChange(WPARAM wParam, LPARAM lParam);
+public:
+	afx_msg void OnExit();
+	afx_msg void OnUser();
+	afx_msg void OnSell();
+	afx_msg void OnInfo();
+	afx_msg void OnAdd();
+	afx_msg void OnDel();
 };
 
 

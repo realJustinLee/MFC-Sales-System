@@ -3,19 +3,19 @@
 
 
 
-// CAddDlg 窗体视图
+// CDelDlg 窗体视图
 
-class CAddDlg : public CFormView
+class CDelDlg : public CFormView
 {
-	DECLARE_DYNCREATE(CAddDlg)
+	DECLARE_DYNCREATE(CDelDlg)
 
 protected:
-	CAddDlg();           // 动态创建所使用的受保护的构造函数
-	virtual ~CAddDlg();
+	CDelDlg();           // 动态创建所使用的受保护的构造函数
+	virtual ~CDelDlg();
 
 public:
 #ifdef AFX_DESIGN_TIME
-	enum { IDD = IDD_DIALOG_ADD };
+	enum { IDD = IDD_DIALOG_DEL };
 #endif
 #ifdef _DEBUG
 	virtual void AssertValid() const;
@@ -32,16 +32,12 @@ private:
 	CComboBox m_combo;
 	int m_price;
 	int m_num;
-	CString m_newName;
-	int m_newPrice;
-	int m_newNum;
+	int m_storage;
 public:
 	virtual void OnInitialUpdate();
 	afx_msg void OnCbnSelchangeCombo1();
-	afx_msg void OnBnClickedButton3();
-	afx_msg void OnBnClickedButton4();
-	afx_msg void OnBnClickedButton5();
-	afx_msg void OnBnClickedButton6();
+	afx_msg void OnBnClickedButton1();
+	afx_msg void OnBnClickedButton2();
 };
 
 
